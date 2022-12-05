@@ -1,3 +1,9 @@
-﻿// See https://aka.ms/new-console-template for more information
-Console.WriteLine("Hello, World!");
-
+﻿namespace magic_destroyers
+{
+    class Program
+    {
+        static void Main(String[] args)
+        {
+        }
+    }
+}
