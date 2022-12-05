@@ -2,6 +2,8 @@
 {
     public class ClothRobe
     {
+        private readonly int armorPoints;
+
         public ClothRobe()
         {
         }
