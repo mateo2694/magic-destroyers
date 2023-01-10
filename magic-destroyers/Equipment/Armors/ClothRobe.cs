@@ -1,4 +1,4 @@
-﻿namespace magic_destroyers.Equipment.Armors
+﻿namespace MagicDestroyers.Equipment.Armors
 {
     public class ClothRobe
     {

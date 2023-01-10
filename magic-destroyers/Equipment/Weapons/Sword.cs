@@ -1,4 +1,4 @@
-﻿namespace magic_destroyers.Equipment.Weapons
+﻿namespace MagicDestroyers.Equipment.Weapons
 {
     public class Sword
     {

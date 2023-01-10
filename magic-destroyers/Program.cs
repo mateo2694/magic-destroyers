@@ -1,4 +1,4 @@
-﻿namespace magic_destroyers
+﻿namespace MagicDestroyers
 {
     class Program
     {

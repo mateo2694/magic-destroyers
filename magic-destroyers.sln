@@ -3,7 +3,7 @@ Microsoft Visual Studio Solution File, Format Version 12.00
 # Visual Studio Version 16
 VisualStudioVersion = 25.0.1704.0
 MinimumVisualStudioVersion = 10.0.40219.1
-Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "magic-destroyers", "magic-destroyers\magic-destroyers.csproj", "{02A94585-737E-41E0-8766-6CDDB97A9975}"
+Project("{FAE04EC0-301F-11D3-BF4B-00C04F79EFBC}") = "MagicDestroyers", "magic-destroyers\MagicDestroyers.csproj", "{02A94585-737E-41E0-8766-6CDDB97A9975}"
 EndProject
 Global
 	GlobalSection(SolutionConfigurationPlatforms) = preSolution

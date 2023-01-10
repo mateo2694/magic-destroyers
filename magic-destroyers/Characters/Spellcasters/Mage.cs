@@ -1,7 +1,7 @@
-﻿using magic_destroyers.Equipment.Armors;
-using magic_destroyers.Equipment.Weapons;
+﻿using MagicDestroyers.Equipment.Armors;
+using MagicDestroyers.Equipment.Weapons;
 
-namespace magic_destroyers.Characters.Spellcasters
+namespace MagicDestroyers.Characters.Spellcasters
 {
     public class Mage
     {
