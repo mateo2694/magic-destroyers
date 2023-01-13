@@ -19,7 +19,7 @@ namespace MagicDestroyers.Characters.Melee
         public int AbilityPoints
         {
             get => abilityPoints;
-            set
+            private set
             {
                 if (value >= 0 && value <= 10)
                 {
@@ -35,7 +35,7 @@ namespace MagicDestroyers.Characters.Melee
         public int HealthPoints
         {
             get => healthPoints;
-            set
+            private set
             {
                 if (value >= 0 && value <= 100)
                 {
@@ -51,7 +51,7 @@ namespace MagicDestroyers.Characters.Melee
         public int Level
         {
             get => level;
-            set
+            private set
             {
                 if (value >= 0 && value <= 50)
                 {
@@ -67,7 +67,7 @@ namespace MagicDestroyers.Characters.Melee
         public string Faction
         {
             get => faction;
-            set
+            private set
             {
                 if (value == "Melee" || value == "SpellCasters")
                 {
