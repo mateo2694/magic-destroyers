@@ -1,15 +1,33 @@
-﻿using MagicDestroyers.Equipment.Armors;
+﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipment.Armors;
 using MagicDestroyers.Equipment.Weapons;
 
 namespace MagicDestroyers.Characters.Melee
 {
     public class Warrior
     {
+        private const int MIN_ABILITY_POINTS = 0;
+        private const int MAX_ABILITY_POINTS = 10;
+        private const int MIN_HEALTH_POINTS = 0;
+        private const int MAX_HEALTH_POINTS = 100;
+        private const int MIN_LEVEL = 0;
+        private const int MAX_LEVEL = 50;
+
+        private const string DEFAULT_NAME = "Warrior";
+        private const Faction DEFAULT_FACTION = Faction.Melee;
+
+        private const int DEFAULT_LEVEL = 1;
+        private const int DEFAULT_HEALTH_POINTS = 100;
+        private const int DEFAULT_ABILITY_POINTS = 10;
+
+        private readonly Chainlink DEFAULT_BODY_ARMOR = new Chainlink();
+        private readonly Axe DEFAULT_WEAPON = new Axe();
+
         private int abilityPoints;
         private int healthPoints;
         private int level;
 
-        private string faction;
+        private Faction faction;
         private string name;
 
         private Chainlink bodyArmor;
@@ -21,13 +39,14 @@ namespace MagicDestroyers.Characters.Melee
             get => abilityPoints;
             private set
             {
-                if (value >= 0 && value <= 10)
+                if (value >= MIN_ABILITY_POINTS && value <= MAX_ABILITY_POINTS)
                 {
                     abilityPoints = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException($"Error: {nameof(AbilityPoints)} must be >= 0 and <= 10");
+                    var message = $"Error: {nameof(AbilityPoints)} must be >= {MIN_ABILITY_POINTS} and <= {MAX_ABILITY_POINTS}";
+                    throw new ArgumentOutOfRangeException(message);
                 }
             }
         }
@@ -37,13 +56,14 @@ namespace MagicDestroyers.Characters.Melee
             get => healthPoints;
             private set
             {
-                if (value >= 0 && value <= 100)
+                if (value >= MIN_HEALTH_POINTS && value <= MAX_HEALTH_POINTS)
                 {
                     healthPoints = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException($"Error: {nameof(HealthPoints)} must be >= 0 and <= 100");
+                    var message = $"Error: {nameof(HealthPoints)} must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
+                    throw new ArgumentOutOfRangeException(message);
                 }
             }
         }
@@ -53,52 +73,43 @@ namespace MagicDestroyers.Characters.Melee
             get => level;
             private set
             {
-                if (value >= 0 && value <= 50)
+                if (value >= MIN_LEVEL && value <= MAX_LEVEL)
                 {
                     level = value;
                 }
                 else
                 {
-                    throw new ArgumentOutOfRangeException($"Error: {nameof(Level)} must be >= 0 and <= 50");
+                    var message = $"Error: {nameof(Level)} must be >= {MIN_LEVEL} and <= {MAX_LEVEL}";
+                    throw new ArgumentOutOfRangeException(message);
                 }
             }
         }
 
-        public string Faction
+        public Faction Faction
         {
             get => faction;
-            private set
-            {
-                if (value == "Melee" || value == "SpellCasters")
-                {
-                    faction = value;
-                }
-                else
-                {
-                    throw new ArgumentOutOfRangeException($"Error: {nameof(Faction)} must be \"Melee\" or \"SpellCasters\"");
-                }
-            }
+            private set => faction = value;
         }
 
-        public Warrior() : this("Warrior", 1)
+        public Warrior() : this(DEFAULT_NAME, DEFAULT_LEVEL)
         {
         }
 
-        public Warrior(string name, int level) : this(name, level, 100)
+        public Warrior(string name, int level) : this(name, level, DEFAULT_HEALTH_POINTS)
         {
         }
 
         public Warrior(string name, int level, int healthPoints)
         {
-            AbilityPoints = 10;
-            HealthPoints = healthPoints;
-            Level = level;
-            Faction = "Melee";
-
             this.name = name;
+            Level = level;
+            HealthPoints = healthPoints;
 
-            bodyArmor = new Chainlink();
-            weapon = new Axe();
+            AbilityPoints = DEFAULT_ABILITY_POINTS;
+            Faction = DEFAULT_FACTION;
+
+            bodyArmor = DEFAULT_BODY_ARMOR;
+            weapon = DEFAULT_WEAPON;
         }
 
         public void Strike()
