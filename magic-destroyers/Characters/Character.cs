@@ -1,8 +1,9 @@
 ﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Interfaces;
 
 namespace MagicDestroyers.Characters
 {
-    public class Character
+    public abstract class Character : IAttacking, IDefending
     {
         private const int MIN_LEVEL = 0;
         private const int MAX_LEVEL = 100;
@@ -66,5 +67,11 @@ namespace MagicDestroyers.Characters
         public Character()
         {
         }
+
+        public abstract void Attack();
+
+        public abstract void SpecialAttack();
+
+        public abstract void Defend();
     }
 }

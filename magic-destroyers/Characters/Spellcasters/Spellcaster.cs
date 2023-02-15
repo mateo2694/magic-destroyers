@@ -30,5 +30,20 @@ namespace MagicDestroyers.Characters.Spellcasters
         {
             base.Faction = Faction.Spellcasters;
         }
+
+        public override void Attack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void SpecialAttack()
+        {
+            throw new NotImplementedException();
+        }
+
+        public override void Defend()
+        {
+            throw new NotImplementedException();
+        }
     }
 }

@@ -16,6 +16,7 @@
     <None Remove="Equipment\Weapons\" />
     <None Remove="Equipment\Armors\" />
     <None Remove="Enums\" />
+    <None Remove="Interfaces\" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="Characters\" />
@@ -25,5 +26,6 @@
     <Folder Include="Equipment\Weapons\" />
     <Folder Include="Equipment\Armors\" />
     <Folder Include="Enums\" />
+    <Folder Include="Interfaces\" />
   </ItemGroup>
 </Project>
