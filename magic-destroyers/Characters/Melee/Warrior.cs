@@ -54,19 +54,34 @@ namespace MagicDestroyers.Characters.Melee
             base.Weapon = DEFAULT_WEAPON;
         }
 
-        public void Strike()
+        private void Strike()
         {
             Console.WriteLine("Strike");
         }
 
-        public void Execute()
+        private void Execute()
         {
             Console.WriteLine("Execute");
         }
 
-        public void SkinHarden()
+        private void SkinHarden()
         {
             Console.WriteLine("SkinHarden");
+        }
+
+        public override void Attack()
+        {
+            this.Strike();
+        }
+
+        public override void SpecialAttack()
+        {
+            this.Execute();
+        }
+
+        public override void Defend()
+        {
+            this.SkinHarden();
         }
     }
 }
