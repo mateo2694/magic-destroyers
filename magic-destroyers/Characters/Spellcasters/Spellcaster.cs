@@ -20,8 +20,9 @@ namespace MagicDestroyers.Characters.Spellcasters
                 }
                 else
                 {
-                    var message = $"Error: {nameof(this.ManaPoints)} must be >= {MIN_MANA_POINTS} and <= {MAX_MANA_POINTS}";
-                    throw new ArgumentOutOfRangeException(message);
+                    var paramName = nameof(this.ManaPoints);
+                    var message = $"Error: value must be >= {MIN_MANA_POINTS} and <= {MAX_MANA_POINTS}";
+                    throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }

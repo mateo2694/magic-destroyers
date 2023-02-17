@@ -41,8 +41,9 @@ namespace MagicDestroyers.Characters
                 }
                 else
                 {
-                    var message = $"Error: {nameof(this.Level)} must be >= {MIN_LEVEL} and <= {MAX_LEVEL}";
-                    throw new ArgumentOutOfRangeException(message);
+                    var paramName = nameof(this.Level);
+                    var message = $"Error: value must be >= {MIN_LEVEL} and <= {MAX_LEVEL}";
+                    throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }
@@ -58,8 +59,9 @@ namespace MagicDestroyers.Characters
                 }
                 else
                 {
-                    var message = $"Error: {nameof(this.HealthPoints)} must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
-                    throw new ArgumentOutOfRangeException(message);
+                    var paramName = nameof(this.HealthPoints);
+                    var message = $"Error: value must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
+                    throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }

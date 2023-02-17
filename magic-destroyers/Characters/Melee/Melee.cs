@@ -20,8 +20,9 @@ namespace MagicDestroyers.Characters.Melee
                 }
                 else
                 {
-                    var message = $"Error: {nameof(this.AbilityPoints)} must be >= {MIN_ABILITY_POINTS} and <= {MAX_ABILITY_POINTS}";
-                    throw new ArgumentOutOfRangeException(message);
+                    var paramName = nameof(this.AbilityPoints);
+                    var message = $"Error: value must be >= {MIN_ABILITY_POINTS} and <= {MAX_ABILITY_POINTS}";
+                    throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }

@@ -33,8 +33,9 @@ namespace MagicDestroyers.Characters.Melee
                 }
                 else
                 {
-                    var message = $"Error: {nameof(this.HealthPoints)} must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
-                    throw new ArgumentOutOfRangeException(message);
+                    var paramName = nameof(this.HealthPoints);
+                    var message = $"Error: value must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
+                    throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }
