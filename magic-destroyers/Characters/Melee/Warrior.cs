@@ -18,10 +18,6 @@ namespace MagicDestroyers.Characters.Melee
 
         private readonly Axe DEFAULT_WEAPON = new Axe();
 
-        private Chainlink bodyArmor;
-
-        private Axe weapon;
-
         public override int HealthPoints
         {
             get => base.healthPoints;
@@ -54,8 +50,8 @@ namespace MagicDestroyers.Characters.Melee
             base.Level = level;
             this.HealthPoints = healthPoints;
             base.AbilityPoints = DEFAULT_ABILITY_POINTS;
-            this.bodyArmor = DEFAULT_BODY_ARMOR;
-            this.weapon = DEFAULT_WEAPON;
+            base.BodyArmor = DEFAULT_BODY_ARMOR;
+            base.Weapon = DEFAULT_WEAPON;
         }
 
         public void Strike()

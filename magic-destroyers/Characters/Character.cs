@@ -1,4 +1,6 @@
 ﻿using MagicDestroyers.Enums;
+using MagicDestroyers.Equipment.Armors;
+using MagicDestroyers.Equipment.Weapons;
 using MagicDestroyers.Interfaces;
 
 namespace MagicDestroyers.Characters
@@ -10,25 +12,11 @@ namespace MagicDestroyers.Characters
         private const int MIN_HEALTH_POINTS = 0;
         private const int MAX_HEALTH_POINTS = 100;
 
-        private Faction faction;
-
-        private string name = "";
-
         private int level = MIN_LEVEL;
 
         protected int healthPoints = MIN_HEALTH_POINTS;
 
-        public Faction Faction
-        {
-            get => this.faction;
-            protected set => this.faction = value;
-        }
-
-        public string Name
-        {
-            get => this.name;
-            protected set => this.name = value;
-        }
+        public string? Name { get; protected set; }
 
         public int Level
         {
@@ -65,6 +53,12 @@ namespace MagicDestroyers.Characters
                 }
             }
         }
+
+        public Faction Faction { get; protected set; }
+
+        public Armor? BodyArmor { get; protected set; }
+
+        public Weapon? Weapon { get; protected set; }
 
         public Character()
         {
