@@ -2,7 +2,7 @@
 
 namespace MagicDestroyers.Characters.Spellcasters
 {
-    public class Spellcaster : Character
+    public abstract class Spellcaster : Character
     {
         private const int MIN_MANA_POINTS = 0;
         private const int MAX_MANA_POINTS = 80;
@@ -32,19 +32,10 @@ namespace MagicDestroyers.Characters.Spellcasters
             base.Faction = Faction.Spellcasters;
         }
 
-        public override void Attack()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void Attack();
 
-        public override void SpecialAttack()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void SpecialAttack();
 
-        public override void Defend()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void Defend();
     }
 }

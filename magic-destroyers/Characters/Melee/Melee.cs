@@ -2,7 +2,7 @@
 
 namespace MagicDestroyers.Characters.Melee
 {
-    public class Melee : Character
+    public abstract class Melee : Character
     {
         private const int MIN_ABILITY_POINTS = 0;
         private const int MAX_ABILITY_POINTS = 50;
@@ -32,19 +32,10 @@ namespace MagicDestroyers.Characters.Melee
             base.Faction = Faction.Melee;
         }
 
-        public override void Attack()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void Attack();
 
-        public override void SpecialAttack()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void SpecialAttack();
 
-        public override void Defend()
-        {
-            throw new NotImplementedException();
-        }
+        public abstract override void Defend();
     }
 }
