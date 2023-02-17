@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Weapons
 {
-    public class Axe
+    public class Axe : Weapon
     {
-        private readonly int damage;
+        private const int DEFAULT_DAMAGE = 30;
 
-        public Axe()
+        public Axe() : this(DEFAULT_DAMAGE)
         {
+        }
+
+        public Axe(int damage)
+        {
+            base.Damage = damage;
         }
 
         public void HackNSlash()

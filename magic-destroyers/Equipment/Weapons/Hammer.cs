@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Weapons
 {
-    public class Hammer
+    public class Hammer : Weapon
     {
-        private readonly int damage;
+        private const int DEFAULT_DAMAGE = 20;
 
-        public Hammer()
+        public Hammer() : this(DEFAULT_DAMAGE)
         {
+        }
+
+        public Hammer(int damage)
+        {
+            base.Damage = damage;
         }
 
         public void Stun()

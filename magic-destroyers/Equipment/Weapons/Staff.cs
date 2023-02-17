@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Weapons
 {
-    public class Staff
+    public class Staff : Weapon
     {
-        private readonly int damage;
+        private const int DEFAULT_DAMAGE = 15;
 
-        public Staff()
+        public Staff() : this(DEFAULT_DAMAGE)
         {
+        }
+
+        public Staff(int damage)
+        {
+            base.Damage = damage;
         }
 
         public void Empower()

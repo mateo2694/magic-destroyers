@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Weapons
 {
-    public class Sword
+    public class Sword : Weapon
     {
-        private readonly int damage;
+        private const int DEFAULT_DAMAGE = 25;
 
-        public Sword()
+        public Sword() : this(DEFAULT_DAMAGE)
         {
+        }
+
+        public Sword(int damage)
+        {
+            base.Damage = damage;
         }
 
         public void Bloodthirst()
