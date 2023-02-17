@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Armors
 {
-    public class Chainlink
+    public class Chainlink : Armor
     {
-        private readonly int armorPoints;
+        private const int DEFAULT_ARMOR_POINTS = 20;
 
-        public Chainlink()
+        public Chainlink() : this(DEFAULT_ARMOR_POINTS)
         {
+        }
+
+        public Chainlink(int armorPoints)
+        {
+            base.ArmorPoints = armorPoints;
         }
     }
 }

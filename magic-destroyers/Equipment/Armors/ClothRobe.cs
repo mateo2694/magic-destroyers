@@ -1,11 +1,16 @@
 ﻿namespace MagicDestroyers.Equipment.Armors
 {
-    public class ClothRobe
+    public class ClothRobe : Armor
     {
-        private readonly int armorPoints;
+        private const int DEFAULT_ARMOR_POINTS = 5;
 
-        public ClothRobe()
+        public ClothRobe() : this(DEFAULT_ARMOR_POINTS)
         {
+        }
+
+        public ClothRobe(int armorPoints)
+        {
+            base.ArmorPoints = armorPoints;
         }
     }
 }
