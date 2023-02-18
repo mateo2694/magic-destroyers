@@ -8,6 +8,8 @@ namespace MagicDestroyers
     {
         static void Main()
         {
+            bool gameOver = false;
+
             List<Character> characters = new List<Character>()
             {
                 new Warrior(),
@@ -31,6 +33,23 @@ namespace MagicDestroyers
                 {
                     spellTeam.Add((Spellcaster)character);
                 }
+            }
+
+            while (!gameOver)
+            {
+                // 1. Take random Melee
+
+                // 2. Take random Spellcaster
+
+                // 3. Melee attacks Spellcaster
+                // 3.1 If character died remove it from team
+                // 3.2 If dead get a new character from team
+
+                // 4. Spellcaster attacks Melee
+                // 4.1 If character died remove it from team
+                // 4.2 If dead get a new character from team
+
+                // 5. If all members of a team die gameOver = true
             }
         }
     }
