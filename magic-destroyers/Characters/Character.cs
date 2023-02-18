@@ -7,18 +7,18 @@ namespace MagicDestroyers.Characters
 {
     public abstract class Character : IAttacking, IDefending
     {
-        private const int MIN_LEVEL = 0;
-        private const int MAX_LEVEL = 100;
-        private const int MIN_HEALTH_POINTS = 0;
-        private const int MAX_HEALTH_POINTS = 100;
-
         private bool isAlive = true;
 
-        private string name = "Character";
+        private string name = "";
 
-        private int level = MIN_LEVEL;
+        private int level = 1;
+        private int healthPoints = Defaults.Character.MAX_HEALTH_POINTS;
 
-        protected int healthPoints = MIN_HEALTH_POINTS;
+        public bool IsAlive
+        {
+            get => this.isAlive;
+            protected set => this.isAlive = value;
+        }
 
         public string Name
         {
@@ -31,32 +31,34 @@ namespace MagicDestroyers.Characters
             get => this.level;
             protected set
             {
-                if (value >= MIN_LEVEL && value <= MAX_LEVEL)
+                if (value >= 0 && value <= Defaults.Character.MAX_LEVEL)
                 {
                     this.level = value;
                 }
                 else
                 {
                     var paramName = nameof(this.Level);
-                    var message = $"Error: value must be >= {MIN_LEVEL} and <= {MAX_LEVEL}";
+                    var message = $"Error: value must be >= {0} and <= {Defaults.Character.MAX_LEVEL}";
+
                     throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
         }
 
-        public virtual int HealthPoints
+        public int HealthPoints
         {
             get => this.healthPoints;
             protected set
             {
-                if (value >= MIN_HEALTH_POINTS && value <= MAX_HEALTH_POINTS)
+                if (value >= 0 && value <= Defaults.Character.MAX_HEALTH_POINTS)
                 {
                     this.healthPoints = value;
                 }
                 else
                 {
                     var paramName = nameof(this.HealthPoints);
-                    var message = $"Error: value must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
+                    var message = $"Error: value must be >= {0} and <= {Defaults.Character.MAX_HEALTH_POINTS}";
+
                     throw new ArgumentOutOfRangeException(paramName, value, message);
                 }
             }
@@ -64,12 +66,14 @@ namespace MagicDestroyers.Characters
 
         public Faction Faction { get; protected set; }
 
-        public Armor? BodyArmor { get; protected set; }
+        public Armor BodyArmor { get; protected set; }
 
-        public Weapon? Weapon { get; protected set; }
+        public Weapon Weapon { get; protected set; }
 
         public Character()
         {
+            this.BodyArmor = new Armor();
+            this.Weapon = new Weapon();
         }
 
         public abstract (string, int) Attack();
@@ -80,6 +84,12 @@ namespace MagicDestroyers.Characters
 
         public void TakeDamage((string name, int damage) attack, string attackerName)
         {
+            if (!this.isAlive)
+            {
+                Console.WriteLine($"{this.name} is already dead.");
+                return;
+            }
+
             var (defenseName, armorPoints) = this.Defend();
 
             if (attack.damage > armorPoints)
@@ -96,7 +106,6 @@ namespace MagicDestroyers.Characters
             {
                 Console.WriteLine($"{this.name} used {defenseName}. {attackerName}'s {attack.name} missed.");
             }
-
 
             Console.WriteLine($"{attackerName}'s {attack.name} was effective.");
             Console.WriteLine($"{this.name}'s {nameof(this.HealthPoints)}: {this.healthPoints}");

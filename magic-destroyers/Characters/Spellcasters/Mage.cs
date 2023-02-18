@@ -5,51 +5,46 @@ namespace MagicDestroyers.Characters.Spellcasters
 {
     public class Mage : Spellcaster
     {
-        private const string DEFAULT_NAME = "Mage";
+        private readonly ClothRobe BODY_ARMOR = new ClothRobe();
 
-        private const int DEFAULT_LEVEL = 1;
-        private const int DEFAULT_HEALTH_POINTS = 100;
-        private const int DEFAULT_MANA_POINTS = 20;
+        private readonly Staff WEAPON = new Staff();
 
-        private readonly ClothRobe DEFAULT_BODY_ARMOR = new ClothRobe();
-
-        private readonly Staff DEFAULT_WEAPON = new Staff();
-
-        public Mage() : this(DEFAULT_NAME, DEFAULT_LEVEL)
+        public Mage()
         {
+            base.Name = Defaults.Mage.NAME;
+            base.ManaPoints = Defaults.Mage.MANA_POINTS;
+            base.BodyArmor = BODY_ARMOR;
+            base.Weapon = WEAPON;
         }
 
-        public Mage(string name, int level) : this(name, level, DEFAULT_HEALTH_POINTS)
-        {
-        }
-
-        public Mage(string name, int level, int healthPoints)
+        public Mage(string name, int level) : this()
         {
             base.Name = name;
             base.Level = level;
-            this.HealthPoints = healthPoints;
-            base.ManaPoints = DEFAULT_MANA_POINTS;
-            base.BodyArmor = DEFAULT_BODY_ARMOR;
-            base.Weapon = DEFAULT_WEAPON;
+        }
+
+        public Mage(string name, int level, int healthPoints) : this(name, level)
+        {
+            base.HealthPoints = healthPoints;
         }
 
         private (string, int) ArcaneWrath()
         {
-            var damage = base.Weapon?.Damage ?? 0;
+            var damage = base.Weapon.Damage;
 
             return (nameof(this.ArcaneWrath), damage);
         }
 
         private (string, int) Firewall()
         {
-            var damage = base.Weapon?.Damage ?? 0;
+            var damage = base.Weapon.Damage;
 
             return (nameof(this.Firewall), damage);
         }
 
         private (string, int) Meditation()
         {
-            var armorPoints = base.BodyArmor?.ArmorPoints ?? 0;
+            var armorPoints = base.BodyArmor.ArmorPoints;
 
             return (nameof(this.Meditation), armorPoints);
         }

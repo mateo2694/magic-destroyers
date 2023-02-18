@@ -5,72 +5,46 @@ namespace MagicDestroyers.Characters.Melee
 {
     public class Warrior : Melee
     {
-        private const int MIN_HEALTH_POINTS = 0;
-        private const int MAX_HEALTH_POINTS = 150;
+        private readonly Chainlink BODY_ARMOR = new Chainlink();
 
-        private const string DEFAULT_NAME = "Warrior";
+        private readonly Axe WEAPON = new Axe();
 
-        private const int DEFAULT_LEVEL = 1;
-        private const int DEFAULT_HEALTH_POINTS = 150;
-        private const int DEFAULT_ABILITY_POINTS = 10;
-
-        private readonly Chainlink DEFAULT_BODY_ARMOR = new Chainlink();
-
-        private readonly Axe DEFAULT_WEAPON = new Axe();
-
-        public override int HealthPoints
+        public Warrior()
         {
-            get => base.healthPoints;
-            protected set
-            {
-                if (value >= MIN_HEALTH_POINTS && value <= MAX_HEALTH_POINTS)
-                {
-                    base.healthPoints = value;
-                }
-                else
-                {
-                    var paramName = nameof(this.HealthPoints);
-                    var message = $"Error: value must be >= {MIN_HEALTH_POINTS} and <= {MAX_HEALTH_POINTS}";
-                    throw new ArgumentOutOfRangeException(paramName, value, message);
-                }
-            }
+            base.Name = Defaults.Warrior.NAME;
+            base.AbilityPoints = Defaults.Warrior.ABILITY_POINTS;
+            base.BodyArmor = BODY_ARMOR;
+            base.Weapon = WEAPON;
         }
 
-        public Warrior() : this(DEFAULT_NAME, DEFAULT_LEVEL)
-        {
-        }
-
-        public Warrior(string name, int level) : this(name, level, DEFAULT_HEALTH_POINTS)
-        {
-        }
-
-        public Warrior(string name, int level, int healthPoints)
+        public Warrior(string name, int level) : this()
         {
             base.Name = name;
             base.Level = level;
-            this.HealthPoints = healthPoints;
-            base.AbilityPoints = DEFAULT_ABILITY_POINTS;
-            base.BodyArmor = DEFAULT_BODY_ARMOR;
-            base.Weapon = DEFAULT_WEAPON;
+        }
+
+        public Warrior(string name, int level, int healthPoints) : this(name, level)
+        {
+            base.HealthPoints = healthPoints;
         }
 
         private (string, int) Strike()
         {
-            var damage = base.Weapon?.Damage ?? 0;
+            var damage = base.Weapon.Damage;
 
             return (nameof(this.Strike), damage);
         }
 
         private (string, int) Execute()
         {
-            var damage = base.Weapon?.Damage ?? 0;
+            var damage = base.Weapon.Damage;
 
             return (nameof(this.Execute), damage);
         }
 
         private (string, int) SkinHarden()
         {
-            var armorPoints = base.BodyArmor?.ArmorPoints ?? 0;
+            var armorPoints = base.BodyArmor.ArmorPoints;
 
             return (nameof(this.SkinHarden), armorPoints);
         }
