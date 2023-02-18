@@ -32,10 +32,10 @@ namespace MagicDestroyers.Characters.Melee
             base.Faction = Faction.Melee;
         }
 
-        public abstract override void Attack();
+        public abstract override (string, int) Attack();
 
-        public abstract override void SpecialAttack();
+        public abstract override (string, int) SpecialAttack();
 
-        public abstract override void Defend();
+        public abstract override (string, int) Defend();
     }
 }

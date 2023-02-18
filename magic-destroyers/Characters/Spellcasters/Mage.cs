@@ -33,34 +33,40 @@ namespace MagicDestroyers.Characters.Spellcasters
             base.Weapon = DEFAULT_WEAPON;
         }
 
-        private void ArcaneWrath()
+        private (string, int) ArcaneWrath()
         {
-            Console.WriteLine("ArcaneWrath");
+            var damage = base.Weapon?.Damage ?? 0;
+
+            return (nameof(this.ArcaneWrath), damage);
         }
 
-        private void Firewall()
+        private (string, int) Firewall()
         {
-            Console.WriteLine("Firewall");
+            var damage = base.Weapon?.Damage ?? 0;
+
+            return (nameof(this.Firewall), damage);
         }
 
-        private void Meditation()
+        private (string, int) Meditation()
         {
-            Console.WriteLine("Meditation");
+            var armorPoints = base.BodyArmor?.ArmorPoints ?? 0;
+
+            return (nameof(this.Meditation), armorPoints);
         }
 
-        public override void Attack()
+        public override (string, int) Attack()
         {
-            this.ArcaneWrath();
+            return this.ArcaneWrath();
         }
 
-        public override void SpecialAttack()
+        public override (string, int) SpecialAttack()
         {
-            this.Firewall();
+            return this.Firewall();
         }
 
-        public override void Defend()
+        public override (string, int) Defend()
         {
-            this.Meditation();
+            return this.Meditation();
         }
     }
 }

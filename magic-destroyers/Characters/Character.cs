@@ -12,11 +12,19 @@ namespace MagicDestroyers.Characters
         private const int MIN_HEALTH_POINTS = 0;
         private const int MAX_HEALTH_POINTS = 100;
 
+        private bool isAlive = true;
+
+        private string name = "Character";
+
         private int level = MIN_LEVEL;
 
         protected int healthPoints = MIN_HEALTH_POINTS;
 
-        public string? Name { get; protected set; }
+        public string Name
+        {
+            get => this.name;
+            protected set => this.name = value;
+        }
 
         public int Level
         {
@@ -64,10 +72,39 @@ namespace MagicDestroyers.Characters
         {
         }
 
-        public abstract void Attack();
+        public abstract (string, int) Attack();
 
-        public abstract void SpecialAttack();
+        public abstract (string, int) SpecialAttack();
 
-        public abstract void Defend();
+        public abstract (string, int) Defend();
+
+        public void TakeDamage((string name, int damage) attack, string attackerName)
+        {
+            var (defenseName, armorPoints) = this.Defend();
+
+            if (attack.damage > armorPoints)
+            {
+                this.healthPoints -= attack.damage;
+
+                if (this.healthPoints <= 0)
+                {
+                    this.isAlive = false;
+                    this.healthPoints = 0;
+                }
+            }
+            else
+            {
+                Console.WriteLine($"{this.name} used {defenseName}. {attackerName}'s {attack.name} missed.");
+            }
+
+
+            Console.WriteLine($"{attackerName}'s {attack.name} was effective.");
+            Console.WriteLine($"{this.name}'s {nameof(this.HealthPoints)}: {this.healthPoints}");
+
+            if (!this.isAlive)
+            {
+                Console.WriteLine($"{this.name} is dead.");
+            }
+        }
     }
 }
