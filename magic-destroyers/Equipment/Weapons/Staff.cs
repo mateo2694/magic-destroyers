@@ -2,9 +2,7 @@
 {
     public class Staff : Weapon
     {
-        private const int DEFAULT_DAMAGE = 15;
-
-        public Staff() : this(DEFAULT_DAMAGE)
+        public Staff() : this(Defaults.Staff.DAMAGE)
         {
         }
 

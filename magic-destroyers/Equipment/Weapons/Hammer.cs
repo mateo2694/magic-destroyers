@@ -2,9 +2,7 @@
 {
     public class Hammer : Weapon
     {
-        private const int DEFAULT_DAMAGE = 20;
-
-        public Hammer() : this(DEFAULT_DAMAGE)
+        public Hammer() : this(Defaults.Hammer.DAMAGE)
         {
         }
 

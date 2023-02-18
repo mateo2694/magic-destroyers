@@ -72,27 +72,27 @@
 
         public static class Weapon
         {
-
+            public const int MAX_DAMAGE = 30;
         }
 
         public static class Axe
         {
-
+            public const int DAMAGE = 30;
         }
 
         public static class Hammer
         {
-
+            public const int DAMAGE = 20;
         }
 
         public static class Staff
         {
-
+            public const int DAMAGE = 15;
         }
 
         public static class Sword
         {
-
+            public const int DAMAGE = 25;
         }
     }
 }

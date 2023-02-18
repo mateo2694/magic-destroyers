@@ -2,9 +2,7 @@
 {
     public class Axe : Weapon
     {
-        private const int DEFAULT_DAMAGE = 30;
-
-        public Axe() : this(DEFAULT_DAMAGE)
+        public Axe() : this(Defaults.Axe.DAMAGE)
         {
         }
 
