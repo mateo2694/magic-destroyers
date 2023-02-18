@@ -52,22 +52,22 @@
 
         public static class Armor
         {
-
+            public const int MAX_ARMOR_POINTS = 20;
         }
 
         public static class Chainlink
         {
-
+            public const int ARMOR_POINTS = 20;
         }
 
         public static class ClothRobe
         {
-
+            public const int ARMOR_POINTS = 5;
         }
 
         public static class LightLeatherVest
         {
-
+            public const int ARMOR_POINTS = 10;
         }
 
         public static class Weapon
