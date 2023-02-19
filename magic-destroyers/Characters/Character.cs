@@ -82,12 +82,13 @@ namespace MagicDestroyers.Characters
 
         public abstract (string, int) Defend();
 
-        public void TakeDamage((string name, int damage) attack, string attackerName)
+        public AttackResult TakeDamage((string name, int damage) attack, string attackerName)
         {
             if (!this.isAlive)
             {
                 Console.WriteLine($"{this.name} is already dead.");
-                return;
+
+                return AttackResult.RuledOut;
             }
 
             var (defenseName, armorPoints) = this.Defend();
@@ -95,24 +96,30 @@ namespace MagicDestroyers.Characters
             if (attack.damage > armorPoints)
             {
                 this.healthPoints -= attack.damage;
-
-                if (this.healthPoints <= 0)
-                {
-                    this.isAlive = false;
-                    this.healthPoints = 0;
-                }
             }
             else
             {
                 Console.WriteLine($"{this.name} used {defenseName}. {attackerName}'s {attack.name} missed.");
+
+                return AttackResult.Missed;
             }
 
-            Console.WriteLine($"{attackerName}'s {attack.name} was effective.");
-            Console.WriteLine($"{this.name}'s {nameof(this.HealthPoints)}: {this.healthPoints}");
-
-            if (!this.isAlive)
+            if (this.healthPoints > 0)
             {
+                Console.WriteLine($"{attackerName}'s {attack.name} was effective.");
+                Console.WriteLine($"{this.name}'s {nameof(this.HealthPoints)}: {this.healthPoints}");
+
+                return AttackResult.Effective;
+            }
+            else
+            {
+                this.isAlive = false;
+                this.healthPoints = 0;
+
+                Console.WriteLine($"{attackerName}'s {attack.name} was lethal.");
                 Console.WriteLine($"{this.name} is dead.");
+
+                return AttackResult.Lethal;
             }
         }
     }
