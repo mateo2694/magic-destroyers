@@ -11,6 +11,8 @@ namespace MagicDestroyers.Characters
 
         private string name = "";
 
+        private Faction faction;
+
         private int score;
         private int level = 1;
         private int healthPoints = Defaults.Character.MAX_HEALTH_POINTS;
@@ -25,6 +27,12 @@ namespace MagicDestroyers.Characters
         {
             get => this.name;
             protected set => this.name = value;
+        }
+
+        public Faction Faction
+        {
+            get => this.faction;
+            protected set => this.faction = value;
         }
 
         public int Score
@@ -70,8 +78,6 @@ namespace MagicDestroyers.Characters
             }
         }
 
-        public Faction Faction { get; protected set; }
-
         public Armor BodyArmor { get; protected set; }
 
         public Weapon Weapon { get; protected set; }
@@ -92,7 +98,7 @@ namespace MagicDestroyers.Characters
         {
             if (!this.isAlive)
             {
-                Console.WriteLine($"{this.name} is already dead.");
+                ColorfulConsole.WriteLine($"{this.name} is already dead.", this.faction);
 
                 return AttackResult.RuledOut;
             }
@@ -105,16 +111,16 @@ namespace MagicDestroyers.Characters
             }
             else
             {
-                Console.WriteLine($"{this.name} used {defenseName}. {attackerName} {attack.name} missed.");
-                Console.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}");
+                ColorfulConsole.WriteLine($"{this.name} used {defenseName}. {attackerName} {attack.name} missed.", this.faction);
+                ColorfulConsole.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}", this.faction);
 
                 return AttackResult.Missed;
             }
 
             if (this.healthPoints > 0)
             {
-                Console.WriteLine($"{attackerName} {attack.name} was effective.");
-                Console.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}");
+                ColorfulConsole.WriteLine($"{attackerName} {attack.name} was effective.", this.faction);
+                ColorfulConsole.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}", this.faction);
 
                 return AttackResult.Effective;
             }
@@ -123,8 +129,8 @@ namespace MagicDestroyers.Characters
                 this.isAlive = false;
                 this.healthPoints = 0;
 
-                Console.WriteLine($"{attackerName} {attack.name} was lethal.");
-                Console.WriteLine($"{this.name} is dead.");
+                ColorfulConsole.WriteLine($"{attackerName} {attack.name} was lethal.", this.faction);
+                ColorfulConsole.WriteLine($"{this.name} is dead.", this.faction);
 
                 return AttackResult.Lethal;
             }
@@ -149,8 +155,8 @@ namespace MagicDestroyers.Characters
                 {
                     this.level++;
 
-                    Console.WriteLine($"{this.name} leveled up.");
-                    Console.WriteLine($"{this.name} {nameof(this.Level)}: {this.level}");
+                    ColorfulConsole.WriteLine($"{this.name} leveled up.", this.faction);
+                    ColorfulConsole.WriteLine($"{this.name} {nameof(this.Level)}: {this.level}", this.faction);
                 }
             }
         }
