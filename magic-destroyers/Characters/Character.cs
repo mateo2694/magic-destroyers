@@ -101,19 +101,20 @@ namespace MagicDestroyers.Characters
 
             if (attack.damage > armorPoints)
             {
-                this.healthPoints -= attack.damage;
+                this.healthPoints -= attack.damage - armorPoints;
             }
             else
             {
-                Console.WriteLine($"{this.name} used {defenseName}. {attackerName}'s {attack.name} missed.");
+                Console.WriteLine($"{this.name} used {defenseName}. {attackerName} {attack.name} missed.");
+                Console.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}");
 
                 return AttackResult.Missed;
             }
 
             if (this.healthPoints > 0)
             {
-                Console.WriteLine($"{attackerName}'s {attack.name} was effective.");
-                Console.WriteLine($"{this.name}'s {nameof(this.HealthPoints)}: {this.healthPoints}");
+                Console.WriteLine($"{attackerName} {attack.name} was effective.");
+                Console.WriteLine($"{this.name} {nameof(this.HealthPoints)}: {this.healthPoints}");
 
                 return AttackResult.Effective;
             }
@@ -122,7 +123,7 @@ namespace MagicDestroyers.Characters
                 this.isAlive = false;
                 this.healthPoints = 0;
 
-                Console.WriteLine($"{attackerName}'s {attack.name} was lethal.");
+                Console.WriteLine($"{attackerName} {attack.name} was lethal.");
                 Console.WriteLine($"{this.name} is dead.");
 
                 return AttackResult.Lethal;
@@ -149,7 +150,7 @@ namespace MagicDestroyers.Characters
                     this.level++;
 
                     Console.WriteLine($"{this.name} leveled up.");
-                    Console.WriteLine($"{this.name}'s {nameof(this.Level)}: {this.level}");
+                    Console.WriteLine($"{this.name} {nameof(this.Level)}: {this.level}");
                 }
             }
         }
