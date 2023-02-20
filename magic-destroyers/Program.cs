@@ -14,10 +14,12 @@ namespace MagicDestroyers
 
             List<Character> characters = new List<Character>()
             {
-                new Warrior("Warrior1", 1),
-                new Warrior("Warrior2", 1),
-                new Mage("Mage1", 1),
-                new Mage("Mage2", 1)
+                new Assassin(),
+                new Knight(),
+                new Warrior(),
+                new Druid(),
+                new Mage(),
+                new Necromancer(),
             };
 
             List<Melee> meleeTeam = new List<Melee>();
