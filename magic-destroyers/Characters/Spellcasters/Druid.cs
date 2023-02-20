@@ -3,36 +3,65 @@ using MagicDestroyers.Equipment.Weapons;
 
 namespace MagicDestroyers.Characters.Spellcasters
 {
-    public class Druid
+    public class Druid : Spellcaster
     {
-        private readonly int? abilityPoints;
-        private readonly int? healthPoints;
-        private readonly int? level;
+        private readonly LightLeatherVest BODY_ARMOR = new LightLeatherVest();
 
-        private readonly string? faction;
-        private readonly string? name;
-
-        private readonly LightLeatherVest? bodyArmor;
-
-        private readonly Staff? weapon;
+        private readonly Staff WEAPON = new Staff();
 
         public Druid()
         {
+            base.Name = Defaults.Druid.NAME;
+            base.ManaPoints = Defaults.Druid.MANA_POINTS;
+            base.BodyArmor = BODY_ARMOR;
+            base.Weapon = WEAPON;
         }
 
-        public void Moonfire()
+        public Druid(string name, int level) : this()
         {
-            Console.WriteLine("Moonfire");
+            base.Name = name;
+            base.Level = level;
         }
 
-        public void Starburst()
+        public Druid(string name, int level, int healthPoints) : this(name, level)
         {
-            Console.WriteLine("Starburst");
+            base.HealthPoints = healthPoints;
         }
 
-        public void OneWithTheNature()
+        private (string, int) Moonfire()
         {
-            Console.WriteLine("OneWithTheNature");
+            var damage = Defaults.Druid.MOONFIRE_POINTS + base.Weapon.Damage + base.ManaPoints * base.Level;
+
+            return (nameof(this.Moonfire), damage);
+        }
+
+        private (string, int) Starburst()
+        {
+            var damage = Defaults.Druid.STARBURST_POINTS + base.Weapon.Damage + base.ManaPoints * base.Level;
+
+            return (nameof(this.Starburst), damage);
+        }
+
+        private (string, int) OneWithTheNature()
+        {
+            var armorPoints = Defaults.Druid.ONE_WITH_THE_NATURE_POINTS + base.BodyArmor.ArmorPoints + base.ManaPoints * base.Level;
+
+            return (nameof(this.OneWithTheNature), armorPoints);
+        }
+
+        public override (string, int) Attack()
+        {
+            return this.Moonfire();
+        }
+
+        public override (string, int) SpecialAttack()
+        {
+            return this.Starburst();
+        }
+
+        public override (string, int) Defend()
+        {
+            return this.OneWithTheNature();
         }
     }
 }
