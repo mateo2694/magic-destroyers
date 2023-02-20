@@ -6,6 +6,9 @@
         {
             public const int MAX_LEVEL = 10;
             public const int MAX_HEALTH_POINTS = 100;
+            public const int EFFECTIVE_ATTACK_SCORE = 2;
+            public const int LETHAL_ATTACK_SCORE = 5;
+            public const int LEVEL_UP_SCORE = 10;
         }
 
         public static class Melee

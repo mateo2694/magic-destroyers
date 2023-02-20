@@ -11,6 +11,7 @@ namespace MagicDestroyers.Characters
 
         private string name = "";
 
+        private int score;
         private int level = 1;
         private int healthPoints = Defaults.Character.MAX_HEALTH_POINTS;
 
@@ -24,6 +25,11 @@ namespace MagicDestroyers.Characters
         {
             get => this.name;
             protected set => this.name = value;
+        }
+
+        public int Score
+        {
+            get => this.score;
         }
 
         public int Level
@@ -120,6 +126,31 @@ namespace MagicDestroyers.Characters
                 Console.WriteLine($"{this.name} is dead.");
 
                 return AttackResult.Lethal;
+            }
+        }
+
+        public void LevelUp(AttackResult attackResult)
+        {
+            var scoreIncrement = attackResult switch
+            {
+                AttackResult.Missed => 0,
+                AttackResult.Effective => Defaults.Character.EFFECTIVE_ATTACK_SCORE,
+                AttackResult.Lethal => Defaults.Character.LETHAL_ATTACK_SCORE,
+                AttackResult.RuledOut => 0,
+                _ => 0
+            };
+
+            for (int i = 0; i < scoreIncrement; i++)
+            {
+                this.score++;
+
+                if (this.score % Defaults.Character.LEVEL_UP_SCORE == 0)
+                {
+                    this.level++;
+
+                    Console.WriteLine($"{this.name} leveled up.");
+                    Console.WriteLine($"{this.name}'s {nameof(this.Level)}: {this.level}");
+                }
             }
         }
     }
