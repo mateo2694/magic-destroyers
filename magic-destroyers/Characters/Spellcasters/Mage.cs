@@ -30,21 +30,21 @@ namespace MagicDestroyers.Characters.Spellcasters
 
         private (string, int) ArcaneWrath()
         {
-            var damage = base.Weapon.Damage;
+            var damage = Defaults.Mage.ARCANE_WRATH_POINTS + base.Weapon.Damage + base.ManaPoints * base.Level;
 
             return (nameof(this.ArcaneWrath), damage);
         }
 
         private (string, int) Firewall()
         {
-            var damage = base.Weapon.Damage;
+            var damage = Defaults.Mage.FIREWALL_POINTS + base.Weapon.Damage + base.ManaPoints * base.Level;
 
             return (nameof(this.Firewall), damage);
         }
 
         private (string, int) Meditation()
         {
-            var armorPoints = base.BodyArmor.ArmorPoints;
+            var armorPoints = Defaults.Mage.MEDITATION_POINTS + base.BodyArmor.ArmorPoints + base.ManaPoints * base.Level;
 
             return (nameof(this.Meditation), armorPoints);
         }

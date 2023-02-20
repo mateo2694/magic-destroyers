@@ -30,21 +30,21 @@ namespace MagicDestroyers.Characters.Melee
 
         private (string, int) Strike()
         {
-            var damage = base.Weapon.Damage;
+            var damage = Defaults.Warrior.STRIKE_POINTS + base.Weapon.Damage + base.AbilityPoints * base.Level;
 
             return (nameof(this.Strike), damage);
         }
 
         private (string, int) Execute()
         {
-            var damage = base.Weapon.Damage;
+            var damage = Defaults.Warrior.EXECUTE_POINTS + base.Weapon.Damage + base.AbilityPoints * base.Level;
 
             return (nameof(this.Execute), damage);
         }
 
         private (string, int) SkinHarden()
         {
-            var armorPoints = base.BodyArmor.ArmorPoints;
+            var armorPoints = Defaults.Warrior.SKIN_HARDEN_POINTS + base.BodyArmor.ArmorPoints + base.AbilityPoints * base.Level;
 
             return (nameof(this.SkinHarden), armorPoints);
         }
